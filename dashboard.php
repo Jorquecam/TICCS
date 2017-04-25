@@ -73,7 +73,7 @@
                     </a>
                 </li>
                 <li >
-                    <a href="comprar?correo=<?php echo $correo ?>.php">
+                    <a href="comprar.php?correo=<?php echo $correo ?>.php">
                         <i class="fa fa-bell-o"></i>
                         <p>Comprar cursos</p>
                     </a>

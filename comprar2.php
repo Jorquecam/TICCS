@@ -62,20 +62,21 @@
 		
 			<?php
 				if(isset($plan) && $plan == "JS01"){
-					include_once("planjs2.php");
+					include_once("codes/planjs2.php");
 				}elseif(isset($plan) && $plan == "HC01"){
-					include_once("planhc2.php");
+					include_once("codes/planhc2.php");
 				}elseif(isset($plan) && $plan == "MS01"){
-					include_once("planms2.php");
+					include_once("codes/planms2.php");
 				}elseif(isset($plan) && $plan == "PP01"){
-					include_once("planpp2.php");
+					include_once("codes/planpp2.php");
 				}elseif(isset($plan) && $plan == "LV01"){
-					include_once("planlv2.php");
+					include_once("codes/planlv2.php");
 				}else{
-					include_once("planpy2.php");
+					include_once("codes/planpy2.php");
 				}
 
 			?>
+			<div id="gifspace" class="col-md-12"></div>
 		</section>
 
 
