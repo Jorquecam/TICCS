@@ -20,10 +20,10 @@
             });
         });
     </script>
-    <input type="hidden" name="curso" value="PY01">
+    <input type="hidden" name="curso" value="LV01">
     <div class="row">
         <div class="col-md-12 text-center">
-            <h2>Has elegido el curso de <b>Python</b></h2>
+            <h2>Has elegido el curso de <b>Laravel</b></h2>
         </div>
     </div>
 
@@ -63,7 +63,7 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        Si ya tienes una cuenta, <a href="login.php">Inicia Sesión</a>
+                        Si ya tienes una cuenta, <a href="../login.php">Inicia Sesión</a>
                     </div>
                 </div>
 

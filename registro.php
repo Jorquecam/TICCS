@@ -58,20 +58,21 @@
 		<section id="plan">
 			<?php
 				if(isset($plan) && $plan == "JS"){
-					include_once("planjs.php");
+					include_once("codes/planjs.php");
 				}elseif(isset($plan) && $plan == "HC"){
-					include_once("planhc.php");
+					include_once("codes/planhc.php");
 				}elseif(isset($plan) && $plan == "MS"){
-					include_once("planms.php");
+					include_once("codes/planms.php");
 				}elseif(isset($plan) && $plan == "PP"){
-					include_once("planpp.php");
+					include_once("codes/planpp.php");
 				}elseif(isset($plan) && $plan == "LV"){
-					include_once("planlv.php");
+					include_once("codes/planlv.php");
 				}else{
-					include_once("planpy.php");
+					include_once("codes/planpy.php");
 				}
 
 			?>
+			<div id="gifspace" class="col-md-12"></div>
 		</section>
 
 

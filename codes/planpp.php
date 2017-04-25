@@ -63,7 +63,7 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        Si ya tienes una cuenta, <a href="login.php">Inicia Sesión</a>
+                        Si ya tienes una cuenta, <a href="../login.php">Inicia Sesión</a>
                     </div>
                 </div>
 

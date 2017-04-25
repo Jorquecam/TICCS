@@ -16,8 +16,9 @@ function post(token) {
     var $correo = $("#correo").val();
     var $costo = $("#precio").val();
     var $curso = $("#curso").val();
-
+    $("#gifspace").append('<div class="col-md-6"></div><div id="gif" class="col-md-3"><img  src="img/ajax-loader.gif"></div><div class="col-md-3"></div>');
     $.post("post2.php", {token: token, correo: $correo, costo: $costo, curso: $curso}, function (data) {
+        $("#gif").remove();
         alertify.alert(data).setHeader('<em>¡Compra Exitosa!</em> ');
         if (data == "Thanks for your Order!"){
             alertify.alert("Tu compra ha sido realizada con éxito", function(){
