@@ -73,6 +73,11 @@ try {
             $result3 = mysqli_fetch_assoc($exec3);
             $nombreCurso = $result3["nombreCurso"];
 
+            $query4 = "SELECT idCompra FROM compras WHERE correoUsuario ='".$correo."' AND idCurso = '".$curso."'";
+            $exec4 = mysqli_query($conex, $query4);
+            $result4 = mysqli_fetch_assoc($exec4);
+            $idCompraInterna = $result4["idCompra"];
+
             session_start();
                 $_SESSION['sesion'] = "SI";
                 $_SESSION['correoUsuario'] = $correo;
@@ -80,7 +85,8 @@ try {
             echo "Thanks for your Order!";
 
             //Ejemplo data
-            $data = array("factura"     =>  "$idCompra",
+            $data = array(  "facturaPK" =>  "$idCompraInterna",
+                            "factura"   =>  "$idCompra",
                             "codCurso"  =>  "$curso",
                             "nomCurso"  =>  "$nombreCurso",
                             "monto"     =>  "$costo");
