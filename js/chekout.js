@@ -33,7 +33,7 @@ $("#gifspace").append('<div class="col-md-6"></div><div id="gif" class="col-md-3
                 window.location.href="login.php";
             }).setHeader('<em>¡Usuario Existente!</em> ');
         }
-     });
+    });
     
 }
 

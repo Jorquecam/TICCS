@@ -46,13 +46,15 @@ try {
         $idQuery = "SELECT COUNT(idCompra) FROM compras";
         $idExec = mysqli_query($conex, $idQuery);
         $idResult = mysqli_fetch_assoc($idExec);
+
         $idCompra = $idResult["COUNT(idCompra)"] + 1;
-        $cantCeros = 10 - strlen((string)$idCompra);
+        $cantCeros = 10 - strlen($idCompra);
 
         for ($i = 0; $i<= $cantCeros; $i++){
-            $idCompra = $idCompra."0";
+            $idCompra = "0".$idCompra;
         }
-        $query2 = "INSERT INTO compras(idCompra, fechaCompra, correoUsuario, idCurso, numTrans, numOrden) VALUES ('".$idCompra."', CURDATE(),'".$correo."','".$curso."', '".$transactionId."', '".$orderNumber."')";
+
+        $query2 = "INSERT INTO compras(idFactura, fechaCompra, correoUsuario, idCurso, numTrans, numOrden) VALUES ('".$idCompra."', CURDATE(),'".$correo."','".$curso."', '".$transactionId."', '".$orderNumber."')";
         mysqli_query($conex, $query2);
 
         $query3 = "SELECT nombreCurso FROM cursos WHERE idCurso ='".$curso."'";
