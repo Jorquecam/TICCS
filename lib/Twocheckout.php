@@ -52,16 +52,16 @@ abstract class Twocheckout
     }
 }
 
-require('/Twocheckout/Api/TwocheckoutAccount.php');
-require('/Twocheckout/Api/TwocheckoutPayment.php');
-require( '/Twocheckout/Api/TwocheckoutApi.php');
-require( '/Twocheckout/Api/TwocheckoutSale.php');
-require('/Twocheckout/Api/TwocheckoutProduct.php');
-require('/Twocheckout/Api/TwocheckoutCoupon.php');
-require('/Twocheckout/Api/TwocheckoutOption.php');
-require('/Twocheckout/Api/TwocheckoutUtil.php');
-require('/Twocheckout/Api/TwocheckoutError.php');
-require('/Twocheckout/TwocheckoutReturn.php');
-require('/Twocheckout/TwocheckoutNotification.php');
-require('/Twocheckout/TwocheckoutCharge.php');
-require('/Twocheckout/TwocheckoutMessage.php');
+require('Twocheckout/Api/TwocheckoutAccount.php');
+require('Twocheckout/Api/TwocheckoutPayment.php');
+require( 'Twocheckout/Api/TwocheckoutApi.php');
+require( 'Twocheckout/Api/TwocheckoutSale.php');
+require('Twocheckout/Api/TwocheckoutProduct.php');
+require('Twocheckout/Api/TwocheckoutCoupon.php');
+require('Twocheckout/Api/TwocheckoutOption.php');
+require('Twocheckout/Api/TwocheckoutUtil.php');
+require('Twocheckout/Api/TwocheckoutError.php');
+require('Twocheckout/TwocheckoutReturn.php');
+require('Twocheckout/TwocheckoutNotification.php');
+require('Twocheckout/TwocheckoutCharge.php');
+require('Twocheckout/TwocheckoutMessage.php');

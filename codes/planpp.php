@@ -20,7 +20,7 @@
             });
         });
     </script>
-    <input type="hidden" name="curso" value="PP01">
+    <input type="hidden" id="curso" value="PP01">
     <div class="row">
         <div class="col-md-12 text-center">
             <h2>Has elegido el curso de <b>PHP POO</b></h2>
