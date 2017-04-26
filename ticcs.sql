@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-04-2017 a las 22:50:45
+-- Tiempo de generación: 26-04-2017 a las 23:05:48
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -27,21 +27,22 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `compras` (
-  `idCompra` int(50) NOT NULL,
+  `idCompra` int(10) NOT NULL,
   `fechaCompra` datetime NOT NULL,
   `correoUsuario` varchar(100) NOT NULL,
   `idCurso` varchar(10) NOT NULL,
-  `numTrans` int(25) NOT NULL,
-  `numOrden` int(25) NOT NULL
+  `numTrans` varchar(50) NOT NULL,
+  `numOrden` varchar(50) NOT NULL,
+  `idFactura` varchar(10) NOT NULL,
+  `ack` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `compras`
 --
 
-INSERT INTO `compras` (`idCompra`, `fechaCompra`, `correoUsuario`, `idCurso`, `numTrans`, `numOrden`) VALUES
-(1, '2017-04-24 00:00:00', 'jquesada0410@gmail.com', 'JS01', 2147483647, 2147483647),
-(11, '2017-04-24 00:00:00', 'jquesada0410@gmail.com', 'HC01', 2147483647, 2147483647);
+INSERT INTO `compras` (`idCompra`, `fechaCompra`, `correoUsuario`, `idCurso`, `numTrans`, `numOrden`, `idFactura`, `ack`) VALUES
+(5, '2017-04-26 00:00:00', 'correo@correo.com', 'JS01', '9093735487410', '9093735487401', '0000000001', '');
 
 -- --------------------------------------------------------
 
@@ -70,6 +71,19 @@ INSERT INTO `cursos` (`idCurso`, `nombreCurso`, `costoCurso`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `negocio`
+--
+
+CREATE TABLE `negocio` (
+  `nombreNegocio` varchar(100) NOT NULL,
+  `cedulaNegocio` varchar(15) NOT NULL,
+  `sucursalNegocio` int(11) NOT NULL,
+  `correoNegocio` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -84,7 +98,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`correoUsuario`, `nombreUsuario`, `contraUsuario`) VALUES
-('jquesada0410@gmail.com', 'Jordan Quesada Cambronero', '$2y$10$hzENYH3FQogOBl1fkUT6veLJ48PXO.nyMCvHMkuVR.jltRcxeEotW');
+('correo@correo.com', 'Jordan Quesada Cambronero', '$2y$10$/.SpmI7yWnLUXDykYZ1tKOgkI6DxNyBxlr69b8Q9.dTvNzgRF2d4u');
 
 --
 -- Índices para tablas volcadas
@@ -95,6 +109,8 @@ INSERT INTO `usuarios` (`correoUsuario`, `nombreUsuario`, `contraUsuario`) VALUE
 --
 ALTER TABLE `compras`
   ADD PRIMARY KEY (`idCompra`),
+  ADD UNIQUE KEY `idCompra` (`idCompra`),
+  ADD UNIQUE KEY `ack` (`ack`),
   ADD KEY `correoUsuario` (`correoUsuario`),
   ADD KEY `idCurso` (`idCurso`);
 
@@ -119,7 +135,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `idCompra` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idCompra` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Restricciones para tablas volcadas
 --
