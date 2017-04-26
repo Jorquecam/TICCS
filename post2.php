@@ -50,7 +50,7 @@ try {
         $idCompra = $idResult["COUNT(idCompra)"] + 1;
         $cantCeros = 10 - strlen($idCompra);
 
-        for ($i = 0; $i<= $cantCeros; $i++){
+        for ($i = 0; $i< $cantCeros; $i++){
             $idCompra = "0".$idCompra;
         }
 
