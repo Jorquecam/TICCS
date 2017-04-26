@@ -19,6 +19,7 @@ if ($method == "POST"){
         && isset($data["monto"])
         && $conn->init()){
 
+        include "functions.php";
         include "vars.php";
 
         ob_start();
@@ -26,64 +27,10 @@ if ($method == "POST"){
         $XML = ob_get_clean();
         $response = sending($XML, $gpg, $consecutivo, $fecha, $sucursal, $rawCed);
         $result = receiving($response, $gpg);
-        storing($result, $conn) ? header("HTTP/1.1 400 Not OK") : header("HTTP/1.1 200 OK");
+        storing($result, $conn, $ordenPK) ?
+            deliver_response(200, "OK", array("info" => "ack stored"))
+            : deliver_response(200, "OK", array("info" => "ack not stored"));
     }
 } else {
-    header("HTTP/1.1 400 Not OK");
-    echo json_encode(array("info" => "No data"));
-}
-
-function sending($XML, &$gpg, $consecutivo, $fecha, $sucursal, $rawCed){
-    $url = "http://192.168.0.254/www/fdgt-webservice/v1/";
-    $gpg->addEncryptKey('dgt@mh.cool');
-    $gpg->addSignKey('admin@ticcs.fake', 'admin');
-    $signedXML = $gpg->encryptAndSign($XML);
-
-    $to_send = array(
-        "clave" => $consecutivo,
-        "fecha" => $fecha,
-        "sucursal" => intval($sucursal),
-        "emisor" => array(
-            "tipoIdentificacion" => 2,
-            "numeroIdentificacion" => $rawCed
-        ),
-        "receptor" => array(
-            "tipoIdentificacion" => 2,
-            "numeroIdentificacion" => $rawCed
-        ),
-        "comprobanteXml" => $signedXML
-    );
-
-    $options = array(
-        'http' => array(
-            'header'  => "Content-type:application/json\r\n",
-            'method'  => 'POST',
-            'content' => json_encode($to_send)
-        )
-    );
-    $context  = stream_context_create($options);
-    return file_get_contents($url, false, $context);
-}
-
-function receiving(&$response, &$gpg){
-    $response = json_decode($response, TRUE);
-    if (isset($response["indEstado"])){
-        $plainResponse = $gpg->decryptAndVerify($response["respuestaXML"]);
-        $response["respuestaXML"] = $plainResponse;
-        return json_encode($response);
-    } else {
-        header("HTTP/1.1 400 Not OK");
-        return json_encode(array("info" => "No response"));
-    }
-}
-
-function storing($data, &$conn){
-    $data = json_decode($data, TRUE);
-    if (isset($data["respuestaXML"])){
-        header("Content-Type:text/xml");
-        exit($data["respuestaXML"]["data"]);
-    } else {
-        return false;
-    }
-
+    deliver_response(403, "Not Permitted", array("info" => "Shall not pass"));
 }

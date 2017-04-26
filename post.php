@@ -91,20 +91,21 @@ try {
                             "nomCurso"  =>  "$nombreCurso",
                             "monto"     =>  "$costo");
 
-            //Function
-            function redirect($data){
-                $url = "192.168.0.254";
-                
-                $options = array(
-                    'http' => array(
-                        'header'  => "Content-type:application/json\r\n",
-                        'method'  => 'POST',
-                        'content' => json_encode($data)
-                    )
-                );
-                $context  = stream_context_create($options);
-                $result = file_get_contents($url, false, $context);
-                if ($result === FALSE) { /* Handle error */ }
+            $url = "http://localhost/utn/TICCS/srv/server.php";
+
+            $options = array(
+                'http' => array(
+                    'header'  => "Content-type:application/json\r\n",
+                    'method'  => 'POST',
+                    'content' => json_encode($data)
+                )
+            );
+            $context  = stream_context_create($options);
+            $result = file_get_contents($url, false, $context);
+            if ($result === FALSE) { /* Handle error */ }
+            $result = json_decode($result, TRUE);
+            if ($result["data"]["info"] === "ack not stored"){
+                //Set ack pending
             }
         }else{
             echo "User Exists";

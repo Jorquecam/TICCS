@@ -3,6 +3,7 @@ $verDoc = 1;
 $tipoDoc = 1;
 $condVenta = "01";
 $orden = $data["factura"];
+$ordenPK = $data["facturaPK"];
 $rawCed = "012304560789";
 $sucursal = "001";
 $POS = "00001";
