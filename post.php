@@ -57,20 +57,26 @@ try {
             $idQuery = "SELECT COUNT(idCompra) FROM compras";
             $idExec = mysqli_query($conex, $idQuery);
             $idResult = mysqli_fetch_assoc($idExec);
-            $idCompra = $idResult["COUNT(idCompra)"] + 1;
-            $cantCeros = 10 - strlen((string)$idCompra);
 
-            for ($i = 0; $i<= $cantCeros; $i++){
-                $idCompra = $idCompra."0";
+            $idCompra = $idResult["COUNT(idCompra)"] + 1;
+            $cantCeros = 10 - strlen($idCompra);
+
+            for ($i = 0; $i < $cantCeros; $i++){
+                $idCompra = "0".$idCompra;
             }
 
-            $query2 = "INSERT INTO compras(idCompra, fechaCompra, correoUsuario, idCurso, numTrans, numOrden) VALUES ('".$idCompra."',CURDATE(),'".$correo."','".$curso."', '".$transactionId."', '".$orderNumber."')";
+            $query2 = "INSERT INTO compras(idFactura, fechaCompra, correoUsuario, idCurso, numTrans, numOrden) VALUES ('".$idCompra."', CURDATE(),'".$correo."','".$curso."', '".$transactionId."', '".$orderNumber."')";
             mysqli_query($conex, $query2);
 
             $query3 = "SELECT nombreCurso FROM cursos WHERE idCurso ='".$curso."'";
             $exec3 = mysqli_query($conex, $query3);
             $result3 = mysqli_fetch_assoc($exec3);
             $nombreCurso = $result3["nombreCurso"];
+
+            $query4 = "SELECT idCompra FROM compras WHERE correoUsuario ='".$correo."' AND idCurso = '".$curso."'";
+            $exec4 = mysqli_query($conex, $query4);
+            $result4 = mysqli_fetch_assoc($exec4);
+            $idCompraInterna = $result4["idCompra"];
 
             session_start();
                 $_SESSION['sesion'] = "SI";
@@ -79,26 +85,23 @@ try {
             echo "Thanks for your Order!";
 
             //Ejemplo data
-            $data = array("factura"     =>  "$idCompra",
+            $data = array(  "facturaPK" =>  "$idCompraInterna",
+                            "factura"   =>  "$idCompra",
                             "codCurso"  =>  "$curso",
                             "nomCurso"  =>  "$nombreCurso",
                             "monto"     =>  "$costo");
 
-            //Function
-            function redirect($data){
-                $url = "192.168.0.254";
-                
-                $options = array(
-                    'http' => array(
-                        'header'  => "Content-type:application/json\r\n",
-                        'method'  => 'POST',
-                        'content' => json_encode($data)
-                    )
-                );
-                $context  = stream_context_create($options);
-                $result = file_get_contents($url, false, $context);
-                if ($result === FALSE) { /* Handle error */ }
-            }
+            $url = "http://localhost/utn/TICCS/srv/server.php";
+
+            $options = array(
+                'http' => array(
+                    'header'  => "Content-type:application/json\r\n",
+                    'method'  => 'POST',
+                    'content' => json_encode($data)
+                )
+            );
+            $context  = stream_context_create($options);
+            file_get_contents($url, false, $context);
         }else{
             echo "User Exists";
         }

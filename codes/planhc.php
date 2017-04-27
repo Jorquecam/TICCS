@@ -20,7 +20,7 @@
             });
         });
     </script>
-    <input type="hidden" name="curso" value="HC01">
+    <input type="hidden" id="curso" value="HC01">
     <div class="row">
         <div class="col-md-12 text-center">
             <h2>Has elegido el curso de <b>HTML5 + CSS3</b></h2>
@@ -45,7 +45,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <span>Contraseña *</span>
-                        <input type="password" name="pass" id="pass" class="form-control" required>
+                        <input type="password" id="pass" class="form-control" required>
                     </div>
 
                     <div class="col-lg-6">

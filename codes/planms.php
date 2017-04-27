@@ -20,7 +20,7 @@
             });
         });
     </script>
-    <input type="hidden" name="curso" value="MS01">
+    <input type="hidden" id="curso" value="MS01">
     <div class="row">
         <div class="col-md-12 text-center">
             <h2>Has elegido el curso de <b>MySQL</b></h2>
@@ -63,7 +63,7 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        Si ya tienes una cuenta, <a href="../login.php">Inicia Sesión</a>
+                        Si ya tienes una cuenta, <a href="./login.php">Inicia Sesión</a>
                     </div>
                 </div>
 

@@ -18,8 +18,9 @@ function post(token) {
     var $pass = $("#pass").val();
     var $costo = $("#precio").val();
     var $curso = $("#curso").val();
+
 $("#gifspace").append('<div class="col-md-6"></div><div id="gif" class="col-md-3"><img  src="img/ajax-loader.gif"></div><div class="col-md-3"></div>');
-    $.post("post2.php", {token: token, correo: $correo, costo: $costo, curso: $curso}, function (data) {
+    $.post("post.php", {token: token, correo: $correo, costo: $costo, curso: $curso, nombre:$nombre, pass:$pass}, function (data) {
         $("#gif").remove();
         alertify.alert(data).setHeader('<em>¡Compra Exitosa!</em> ');
         if (data == "Thanks for your Order!"){
@@ -33,7 +34,7 @@ $("#gifspace").append('<div class="col-md-6"></div><div id="gif" class="col-md-3
                 window.location.href="login.php";
             }).setHeader('<em>¡Usuario Existente!</em> ');
         }
-     });
+    });
     
 }
 
