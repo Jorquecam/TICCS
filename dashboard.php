@@ -106,22 +106,42 @@
             <div class="container">
                 <div class="col-md-11">
                     <div class="card">
-                        <div class="header"></h4>
-                            
-                            <p class="category"></p>
-                        </div>
-                        <div class="content table-responsive table-full-width">
+
                             <?php 
                                 if ($row == 0) {
                                     echo '<h2>No se han adquirido cursos</h2>';
                                 }else{
                                     echo '<h2>Cursos disponibles</h2>';
                                     while ($result = mysqli_fetch_assoc($exec)) {
-                                        echo "<div class='row'><h2>".$result['nombreCurso']."</h2></div>";
+                                        echo "<div class='col-lg-4 col-sm-6'>";
+                                            echo "<a href='' class='portfolio-box'>";
+                                            if ($result['nombreCurso'] == "Javascript") {
+                                                echo "<img src='img/js.jpg' class='img-responsive' alt=''>";
+                                            }elseif ($result['nombreCurso'] == "HTML5 + CCS3") {
+                                                echo "<img src='img/htmlcss.jpg' class='img-responsive' alt=''>";
+                                            }elseif ($result['nombreCurso'] == "PHP POO") {
+                                                echo "<img src='img/php.jpg' class='img-responsive' alt=''>";
+                                            }elseif ($result['nombreCurso'] == "MySQL") {
+                                                echo "<img src='img/mysql.png' class='img-responsive' alt=''>";
+                                            }elseif ($result['nombreCurso'] == "Laravel") {
+                                                echo "<img src='img/laravel.jpg' class='img-responsive' alt=''>";
+                                            }elseif ($result['nombreCurso'] == "Python") {
+                                                echo "<img src='img/python.jpg' class='img-responsive' alt=''>";
+                                            }
+                                            
+                                            echo "<div class='portfolio-box-caption'>";
+                                                echo "<div class='portfolio-box-caption-content'>";
+                                                    echo "<div class='project-name'>";
+                                                         echo $result['nombreCurso'];
+                                                    echo "</div>";
+                                                echo "</div>";
+                                            echo "</div>";
+                                            echo "</a>";
+                                        echo "</div>";
                                     }
                                 }
                              ?>
-                        </div>
+
                     </div>
                 </div>
             </div>
