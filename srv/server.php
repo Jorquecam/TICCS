@@ -25,11 +25,11 @@ if ($method == "POST"){
         ob_start();
         include "template/xml-file.php";
         $XML = ob_get_clean();
-        $response = sending($XML, $gpg, $consecutivo, $fecha, $sucursal, $rawCed);
-        $result = receiving($response, $gpg);
+        $response = sending($data,$XML, $gpg, $consecutivo, $fecha, $sucursal, $rawCed);
+        $result = receiving($data, $response, $gpg, $conn, $ordenPK);
         storing($result, $conn, $ordenPK) ?
-            deliver_response(200, "OK", array("info" => "ack stored"))
-            : deliver_response(200, "OK", array("info" => "ack not stored"));
+            deliver_response(400, "Error", array("info" => "ack stored"))
+            : deliver_response(400, "Error", array("info" => "ack not stored"));
     }
 } else {
     deliver_response(403, "Not Permitted", array("info" => "Shall not pass"));

@@ -87,11 +87,7 @@ try {
             )
         );
         $context  = stream_context_create($options);
-        $result = file_get_contents($url, false, $context);
-        if ($result === FALSE) { /* Handle error */ }
-        if ($result["data"]["info"] === "ack not stored"){
-            //Set ack pending
-        }
+        file_get_contents($url, false, $context);
     }else{
         echo "Not today";
     }

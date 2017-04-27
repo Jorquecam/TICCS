@@ -13,7 +13,7 @@ $consecutivo = "506".date("d").date("m").date("y").$rawCed.$sucursal.$POS."0".$t
 $miniConsecutivo = $sucursal.$POS."0".$tipoDoc.$orden.$situacionComprobante;
 $fecha = date("o-m-d");
 $fecha .= "T";
-$fecha .= date("G:i:s");
+$fecha .= date("H:i:s");
 $fecha .= "-06:00";
 
 $cedula = "123456789";
